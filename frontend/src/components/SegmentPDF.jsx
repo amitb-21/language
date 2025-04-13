@@ -35,16 +35,21 @@ const SegmentPDF = () => {
     setError(null); 
 
     try {
-      const response = await axios.post('http://localhost:8000/segment-pdf', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      setSegments(response.data.segments || []);
+        const response = await axios.post('http://localhost:8000/segment-pdf', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        if (response.data && response.data.segments) {
+            setSegments(response.data.segments);
+        } else {
+            setError("Unexpected response format.");
+        }
     } catch (err) {
-      setError("Something went wrong. Please try again later.");
+        console.error(err); 
+        setError("Something went wrong. Please try again later.");
     } finally {
-      setLoading(false); // End loading state
+        setLoading(false); 
     }
-  };
+};
 
   return (
     <div className={containerStyle}>
