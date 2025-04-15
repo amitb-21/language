@@ -13,8 +13,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/segmenter" element={<SegmentText />} />
-          <Route path="/segmenter/pdf" element={<SegmentPDF />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
